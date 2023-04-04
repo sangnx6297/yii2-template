@@ -15,13 +15,13 @@ return [
         'admin' => [
             'class' => 'mdm\admin\Module',
             'layout' => 'right-menu', // avaliable value 'left-menu', 'right-menu' and 'top-menu'
-            'mainLayout' => '@app/views/layouts/main.php',
+            'mainLayout' => '@frontend/views/layouts/main.php',
         ],
         'log-reader' => [
             'class'   => 'kriss\logReader\Module',
             'aliases' => [
                 // 'Frontend Errors' => '@frontend/runtime/logs/app.log',
-                'Backend Errors'  => '@backend/runtime/logs/app.log',
+                'Backend Errors'  =>  '@app/logs/frontend/app.log',
                 'Console Errors'  => '@console/runtime/logs/app.log',
             ],
         ],
@@ -68,6 +68,12 @@ return [
             ],
         ],
 
+    ],
+    'as access'           => [
+        'class'        => \mdm\admin\components\AccessControl::class,
+        'allowActions' => [
+            'site/*',
+        ],
     ],
     'params' => $params,
 ];

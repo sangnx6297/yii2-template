@@ -6,6 +6,7 @@ services:
     build:
       context: ./
       dockerfile: ./build/Dockerfile
+    image: '${SERVICE_REPO}:${SERVICE_VERSION}-release'
     env_file:
       - .env
     ports:
@@ -23,6 +24,7 @@ services:
     build:
         context: ./
         dockerfile: ./build/Dockerfile
+    image: '${SERVICE_REPO}:${SERVICE_VERSION}-release'
     ports:
       - 31080:80
     env_file:

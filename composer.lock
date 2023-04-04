@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2aa679aefc99d37300d5812252d27690",
+    "content-hash": "cf2c25605ecdf9a00afd982d705d02f8",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1461,6 +1461,53 @@
                 }
             ],
             "time": "2022-02-26T18:53:51+00:00"
+        },
+        {
+            "name": "kriss/yii2-log-reader",
+            "version": "v2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/krissss/yii2-log-reader.git",
+                "reference": "a08b19f878a5915c4af09f1df4bc5907a2a60606"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/krissss/yii2-log-reader/zipball/a08b19f878a5915c4af09f1df4bc5907a2a60606",
+                "reference": "a08b19f878a5915c4af09f1df4bc5907a2a60606",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.13"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kriss\\logReader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kriss",
+                    "email": "462679766@qq.com"
+                }
+            ],
+            "description": "Yii2 log reader",
+            "keywords": [
+                "extension",
+                "log",
+                "log reader",
+                "module",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/krissss/yii2-log-reader/issues",
+                "source": "https://github.com/krissss/yii2-log-reader/tree/v2.4"
+            },
+            "time": "2020-11-15T14:24:42+00:00"
         },
         {
             "name": "mdmsoft/yii2-admin",

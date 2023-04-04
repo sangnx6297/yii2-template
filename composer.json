@@ -25,7 +25,8 @@
         "arturoliveira/yii2-tileslidemenu": "*",
         "kartik-v/yii2-widget-activeform": "@dev",
         "mzdani/yii2-adminlte-menu-widget": "@dev",
-        "symfony/browser-kit": "^5.4"
+        "symfony/browser-kit": "^5.4",
+        "kriss/yii2-log-reader": "2.*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

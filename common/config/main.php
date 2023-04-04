@@ -1,8 +1,8 @@
 <?php
-return [
+$config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
@@ -11,6 +11,7 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\PhpManager'
+            'defaultRoles' => ['admin',],
         ],
         'i18n' => [
             'translations' => [
@@ -53,10 +54,10 @@ return [
                 ],
             ],
         ],
-        'log'          => [
+        'log' => [
             'targets' => [
                 [
-                    'class'  => 'yii\log\FileTarget',
+                    'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning', 'trace'],
                 ],
                 /*[
@@ -67,3 +68,28 @@ return [
         ],
     ],
 ];
+
+if (!YII_ENV_PROD) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        'allowedIPs' => ['*'],
+        'generators' => [
+            'crud' => [
+                'class' => 'yii\gii\generators\crud\Generator',
+                'templates' => [
+                    // 'legacy' => '@common/codetemplate/crud-legacy',
+                    'new-with-workflow' => '@vendor/hail/yii2-adminlte3/src/gii/generators/curd/crud-new',
+//                    'base-without-workflow' => '@common/codetemplate/crud-base',
+                ],
+            ],
+        ],
+    ];
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+        'allowedIPs' => ['*'],
+    ];
+}
+return $config;

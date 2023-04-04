@@ -6,6 +6,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+    image: '${SERVICE_REPO}:${SERVICE_VERSION}-local'
     env_file:
       - .env
     ports:
@@ -15,11 +16,12 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       # Mount source-code for development
       - ./:/app
-      - ./frontend/apache2:/etc/apache2/sites-available:delegated
+#      - ./frontend/apache2:/etc/apache2/sites-available:delegated
     networks:
       - lcs-internal-service-network
 
   backend:
+    image: '${SERVICE_REPO}:${SERVICE_VERSION}-local'
     build:
       context: ./
       dockerfile: Dockerfile
@@ -32,7 +34,7 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       # Mount source-code for development
       - ./:/app
-      - ./backend/apache2/conf.d:/etc/apache2/sites-available:delegated
+#      - ./backend/apache2/conf.d:/etc/apache2/sites-available:delegated
     networks:
       - lcs-internal-service-network
 

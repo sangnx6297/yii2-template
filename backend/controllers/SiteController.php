@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\LoginForm;
+use mdm\admin\components\Helper;
 use mdm\admin\models\form\Signup;
 use Yii;
 use yii\filters\VerbFilter;
@@ -25,7 +26,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'register', 'error'],
+                        'actions' => ['login', 'register', 'test', 'error'],
                         'allow' => true,
                     ],
                     [
@@ -120,5 +121,9 @@ class SiteController extends Controller
             }
         }
         return $this->render('register', ['model' => $model]);
+    }
+
+    public function actionTest(){
+        var_dump(Helper::checkRoute('/admin/user',  Yii::$app->getRequest()->get(), Yii::$app->user));
     }
 }
