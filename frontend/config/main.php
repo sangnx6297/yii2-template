@@ -16,7 +16,15 @@ return [
             'class' => 'mdm\admin\Module',
             'layout' => 'right-menu', // avaliable value 'left-menu', 'right-menu' and 'top-menu'
             'mainLayout' => '@app/views/layouts/main.php',
-        ]
+        ],
+        'log-reader' => [
+            'class'   => 'kriss\logReader\Module',
+            'aliases' => [
+                // 'Frontend Errors' => '@frontend/runtime/logs/app.log',
+                'Backend Errors'  => '@backend/runtime/logs/app.log',
+                'Console Errors'  => '@console/runtime/logs/app.log',
+            ],
+        ],
     ],
     'components' => [
         'request' => [
@@ -37,9 +45,11 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'logFile' => '@app/logs/frontend/app.log'
                 ],
             ],
         ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

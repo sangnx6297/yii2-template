@@ -6,6 +6,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+    env_file:
+      - .env
     ports:
       - 20080:80
     volumes:
@@ -21,6 +23,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+    env_file:
+      - .env
     ports:
       - 21080:80
     volumes:

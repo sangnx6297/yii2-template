@@ -53,5 +53,17 @@ return [
                 ],
             ],
         ],
+        'log'          => [
+            'targets' => [
+                [
+                    'class'  => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning', 'trace'],
+                ],
+                /*[
+                    'class'  => 'yii\log\DbTarget',
+                    'levels' => ['error', 'warning'],
+                ],*/
+            ],
+        ],
     ],
 ];

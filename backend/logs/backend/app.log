@@ -1,0 +1,320 @@
+2023-04-04 01:47:15 [172.18.0.1][2][-][warning][yii\caching\FileCache::setValue] Unable to write cache file '/app/backend/runtime/cache/08/08155d915b922f2211519eb466ffd5e9.bin': file_put_contents(/app/backend/runtime/cache/08/08155d915b922f2211519eb466ffd5e9.bin): Failed to open stream: No such file or directory
+    in /app/vendor/mdmsoft/yii2-admin/components/MenuHelper.php:124
+    in /app/backend/views/layouts/sidebar.php:53
+    in /app/backend/views/layouts/main.php:37
+2023-04-04 01:47:15 [172.18.0.1][2][-][warning][yii\caching\FileCache::setValue] Unable to write cache file '/app/backend/runtime/cache/d5/d556a73c98485311f3fece1c7a6a7a47.bin': file_put_contents(/app/backend/runtime/cache/d5/d556a73c98485311f3fece1c7a6a7a47.bin): Failed to open stream: No such file or directory
+    in /app/vendor/mdmsoft/yii2-admin/components/MenuHelper.php:124
+    in /app/backend/views/layouts/sidebar.php:53
+    in /app/backend/views/layouts/main.php:37
+2023-04-04 01:47:15 [172.18.0.1][2][-][warning][yii\debug\Module::checkAccess] Access to debugger is denied due to IP address restriction. The requesting IP address is 172.18.0.1
+    in /app/backend/views/layouts/main.php:51
+    in /app/backend/controllers/SiteController.php:67
+2023-04-04 01:47:15 [172.18.0.1][2][-][warning][yii\debug\Module::checkAccess] Access to debugger is denied due to IP address restriction. The requesting IP address is 172.18.0.1
+2023-04-04 01:47:14 [172.18.0.1][2][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-app-backend' => 'c4a0d5b8b0f3011ade62941aadc337f8f6e1d114d1a4c749bcfadcfece36473fa:2:{i:0;s:21:\"_identity-app-backend\";i:1;s:46:\"[1,\"Ee18QaPm3qtF9R3TvHnayMMyJh08HF40\",2592000]\";}'
+    '_identity-backend' => '978259ec763a25eaacd29c309d69d43548f6f7e336019d1efc6a2922c62aed64a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[2,\"SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R\",2592000]\";}'
+    '_csrf-backend' => 'c446cf3f3486e252735257bb3170e346c062093bbd36064e14356f6e938751d6a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"G9x7onY4QHPb3V6DrHqWRPZBBvvmq7X6\";}'
+    'advanced-backend' => 'b362545a2ddb7014c7c01bb6b884e759'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 2
+    '__authKey' => 'SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost:21080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\"Microsoft Edge\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.62'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => '_identity-app-backend=c4a0d5b8b0f3011ade62941aadc337f8f6e1d114d1a4c749bcfadcfece36473fa%3A2%3A%7Bi%3A0%3Bs%3A21%3A%22_identity-app-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22Ee18QaPm3qtF9R3TvHnayMMyJh08HF40%22%2C2592000%5D%22%3B%7D; _identity-backend=978259ec763a25eaacd29c309d69d43548f6f7e336019d1efc6a2922c62aed64a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B2%2C%22SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R%22%2C2592000%5D%22%3B%7D; _csrf-backend=c446cf3f3486e252735257bb3170e346c062093bbd36064e14356f6e938751d6a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22G9x7onY4QHPb3V6DrHqWRPZBBvvmq7X6%22%3B%7D; advanced-backend=b362545a2ddb7014c7c01bb6b884e759'
+    'PATH' => '/app:/app/vendor/bin:/root/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.56 (Debian) Server at localhost Port 21080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.56 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '172.18.0.13'
+    'SERVER_PORT' => '21080'
+    'REMOTE_ADDR' => '172.18.0.1'
+    'DOCUMENT_ROOT' => '/app/backend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/app/backend/web'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/app/backend/web/index.php'
+    'REMOTE_PORT' => '35342'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1680572834.2834
+    'REQUEST_TIME' => 1680572834
+    'argv' => []
+    'argc' => 0
+]
+2023-04-04 01:47:15 [172.18.0.1][2][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\log\FileTarget: Exception (Invalid Configuration) 'yii\base\InvalidConfigException' with message 'Unable to append to log file: /app/backend/runtime/logs/app.log' 
+
+in /app/vendor/yiisoft/yii2/log/FileTarget.php:116
+
+Stack trace:
+#0 /app/vendor/yiisoft/yii2/log/Target.php(157): yii\log\FileTarget->export()
+#1 /app/vendor/yiisoft/yii2/log/Dispatcher.php(194): yii\log\Target->collect(Array, true)
+#2 /app/vendor/yiisoft/yii2/log/Logger.php(226): yii\log\Dispatcher->dispatch(Array, true)
+#3 [internal function]: yii\log\Logger->flush(true)
+#4 {main}
+2023-04-04 01:47:15 [172.18.0.1][2][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: PHP Warning 'yii\base\ErrorException' with message 'file_put_contents(/app/backend/runtime/debug/642b81a306b7c.data): Failed to open stream: Permission denied' 
+
+in /app/vendor/yiisoft/yii2-debug/src/LogTarget.php:73
+
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'file_put_conten...', '/app/vendor/yii...', 73)
+#1 /app/vendor/yiisoft/yii2-debug/src/LogTarget.php(73): file_put_contents('/app/backend/ru...', 'a:14:{s:6:"conf...')
+#2 /app/vendor/yiisoft/yii2-debug/src/LogTarget.php(182): yii\debug\LogTarget->export()
+#3 /app/vendor/yiisoft/yii2/log/Dispatcher.php(194): yii\debug\LogTarget->collect(Array, true)
+#4 /app/vendor/yiisoft/yii2/log/Logger.php(226): yii\log\Dispatcher->dispatch(Array, true)
+#5 [internal function]: yii\log\Logger->flush(true)
+#6 {main}
+2023-04-04 01:47:14 [172.18.0.1][2][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-app-backend' => 'c4a0d5b8b0f3011ade62941aadc337f8f6e1d114d1a4c749bcfadcfece36473fa:2:{i:0;s:21:\"_identity-app-backend\";i:1;s:46:\"[1,\"Ee18QaPm3qtF9R3TvHnayMMyJh08HF40\",2592000]\";}'
+    '_identity-backend' => '978259ec763a25eaacd29c309d69d43548f6f7e336019d1efc6a2922c62aed64a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[2,\"SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R\",2592000]\";}'
+    '_csrf-backend' => 'c446cf3f3486e252735257bb3170e346c062093bbd36064e14356f6e938751d6a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"G9x7onY4QHPb3V6DrHqWRPZBBvvmq7X6\";}'
+    'advanced-backend' => 'b362545a2ddb7014c7c01bb6b884e759'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 2
+    '__authKey' => 'SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost:21080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\"Microsoft Edge\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.62'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => '_identity-app-backend=c4a0d5b8b0f3011ade62941aadc337f8f6e1d114d1a4c749bcfadcfece36473fa%3A2%3A%7Bi%3A0%3Bs%3A21%3A%22_identity-app-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22Ee18QaPm3qtF9R3TvHnayMMyJh08HF40%22%2C2592000%5D%22%3B%7D; _identity-backend=978259ec763a25eaacd29c309d69d43548f6f7e336019d1efc6a2922c62aed64a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B2%2C%22SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R%22%2C2592000%5D%22%3B%7D; _csrf-backend=c446cf3f3486e252735257bb3170e346c062093bbd36064e14356f6e938751d6a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22G9x7onY4QHPb3V6DrHqWRPZBBvvmq7X6%22%3B%7D; advanced-backend=b362545a2ddb7014c7c01bb6b884e759'
+    'PATH' => '/app:/app/vendor/bin:/root/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.56 (Debian) Server at localhost Port 21080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.56 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '172.18.0.13'
+    'SERVER_PORT' => '21080'
+    'REMOTE_ADDR' => '172.18.0.1'
+    'DOCUMENT_ROOT' => '/app/backend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/app/backend/web'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/app/backend/web/index.php'
+    'REMOTE_PORT' => '35342'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1680572834.2834
+    'REQUEST_TIME' => 1680572834
+    'argv' => []
+    'argc' => 0
+]
+2023-04-04 01:47:43 [172.18.0.1][2][-][warning][yii\caching\FileCache::setValue] Unable to write cache file '/app/backend/runtime/cache/08/08155d915b922f2211519eb466ffd5e9.bin': file_put_contents(/app/backend/runtime/cache/08/08155d915b922f2211519eb466ffd5e9.bin): Failed to open stream: No such file or directory
+    in /app/vendor/mdmsoft/yii2-admin/components/MenuHelper.php:124
+    in /app/backend/views/layouts/sidebar.php:53
+    in /app/backend/views/layouts/main.php:37
+2023-04-04 01:47:43 [172.18.0.1][2][-][warning][yii\caching\FileCache::setValue] Unable to write cache file '/app/backend/runtime/cache/d5/d556a73c98485311f3fece1c7a6a7a47.bin': file_put_contents(/app/backend/runtime/cache/d5/d556a73c98485311f3fece1c7a6a7a47.bin): Failed to open stream: No such file or directory
+    in /app/vendor/mdmsoft/yii2-admin/components/MenuHelper.php:124
+    in /app/backend/views/layouts/sidebar.php:53
+    in /app/backend/views/layouts/main.php:37
+2023-04-04 01:47:43 [172.18.0.1][2][-][warning][yii\debug\Module::checkAccess] Access to debugger is denied due to IP address restriction. The requesting IP address is 172.18.0.1
+    in /app/backend/views/layouts/main.php:51
+    in /app/backend/controllers/SiteController.php:67
+2023-04-04 01:47:43 [172.18.0.1][2][-][warning][yii\debug\Module::checkAccess] Access to debugger is denied due to IP address restriction. The requesting IP address is 172.18.0.1
+2023-04-04 01:47:41 [172.18.0.1][2][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-app-backend' => 'c4a0d5b8b0f3011ade62941aadc337f8f6e1d114d1a4c749bcfadcfece36473fa:2:{i:0;s:21:\"_identity-app-backend\";i:1;s:46:\"[1,\"Ee18QaPm3qtF9R3TvHnayMMyJh08HF40\",2592000]\";}'
+    '_identity-backend' => '978259ec763a25eaacd29c309d69d43548f6f7e336019d1efc6a2922c62aed64a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[2,\"SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R\",2592000]\";}'
+    '_csrf-backend' => 'c446cf3f3486e252735257bb3170e346c062093bbd36064e14356f6e938751d6a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"G9x7onY4QHPb3V6DrHqWRPZBBvvmq7X6\";}'
+    'advanced-backend' => 'b362545a2ddb7014c7c01bb6b884e759'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 2
+    '__authKey' => 'SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost:21080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\"Microsoft Edge\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.62'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => '_identity-app-backend=c4a0d5b8b0f3011ade62941aadc337f8f6e1d114d1a4c749bcfadcfece36473fa%3A2%3A%7Bi%3A0%3Bs%3A21%3A%22_identity-app-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22Ee18QaPm3qtF9R3TvHnayMMyJh08HF40%22%2C2592000%5D%22%3B%7D; _identity-backend=978259ec763a25eaacd29c309d69d43548f6f7e336019d1efc6a2922c62aed64a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B2%2C%22SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R%22%2C2592000%5D%22%3B%7D; _csrf-backend=c446cf3f3486e252735257bb3170e346c062093bbd36064e14356f6e938751d6a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22G9x7onY4QHPb3V6DrHqWRPZBBvvmq7X6%22%3B%7D; advanced-backend=b362545a2ddb7014c7c01bb6b884e759'
+    'PATH' => '/app:/app/vendor/bin:/root/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.56 (Debian) Server at localhost Port 21080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.56 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '172.18.0.13'
+    'SERVER_PORT' => '21080'
+    'REMOTE_ADDR' => '172.18.0.1'
+    'DOCUMENT_ROOT' => '/app/backend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/app/backend/web'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/app/backend/web/index.php'
+    'REMOTE_PORT' => '35346'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1680572861.7886
+    'REQUEST_TIME' => 1680572861
+    'argv' => []
+    'argc' => 0
+]
+2023-04-04 01:47:43 [172.18.0.1][2][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\log\FileTarget: Exception (Invalid Configuration) 'yii\base\InvalidConfigException' with message 'Unable to append to log file: /app/backend/runtime/logs/app.log' 
+
+in /app/vendor/yiisoft/yii2/log/FileTarget.php:116
+
+Stack trace:
+#0 /app/vendor/yiisoft/yii2/log/Target.php(157): yii\log\FileTarget->export()
+#1 /app/vendor/yiisoft/yii2/log/Dispatcher.php(194): yii\log\Target->collect(Array, true)
+#2 /app/vendor/yiisoft/yii2/log/Logger.php(226): yii\log\Dispatcher->dispatch(Array, true)
+#3 [internal function]: yii\log\Logger->flush(true)
+#4 {main}
+2023-04-04 01:47:43 [172.18.0.1][2][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: PHP Warning 'yii\base\ErrorException' with message 'file_put_contents(/app/backend/runtime/debug/642b81be92d1e.data): Failed to open stream: Permission denied' 
+
+in /app/vendor/yiisoft/yii2-debug/src/LogTarget.php:73
+
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'file_put_conten...', '/app/vendor/yii...', 73)
+#1 /app/vendor/yiisoft/yii2-debug/src/LogTarget.php(73): file_put_contents('/app/backend/ru...', 'a:14:{s:6:"conf...')
+#2 /app/vendor/yiisoft/yii2-debug/src/LogTarget.php(182): yii\debug\LogTarget->export()
+#3 /app/vendor/yiisoft/yii2/log/Dispatcher.php(194): yii\debug\LogTarget->collect(Array, true)
+#4 /app/vendor/yiisoft/yii2/log/Logger.php(226): yii\log\Dispatcher->dispatch(Array, true)
+#5 [internal function]: yii\log\Logger->flush(true)
+#6 {main}
+2023-04-04 01:47:41 [172.18.0.1][2][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_identity-app-backend' => 'c4a0d5b8b0f3011ade62941aadc337f8f6e1d114d1a4c749bcfadcfece36473fa:2:{i:0;s:21:\"_identity-app-backend\";i:1;s:46:\"[1,\"Ee18QaPm3qtF9R3TvHnayMMyJh08HF40\",2592000]\";}'
+    '_identity-backend' => '978259ec763a25eaacd29c309d69d43548f6f7e336019d1efc6a2922c62aed64a:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[2,\"SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R\",2592000]\";}'
+    '_csrf-backend' => 'c446cf3f3486e252735257bb3170e346c062093bbd36064e14356f6e938751d6a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"G9x7onY4QHPb3V6DrHqWRPZBBvvmq7X6\";}'
+    'advanced-backend' => 'b362545a2ddb7014c7c01bb6b884e759'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 2
+    '__authKey' => 'SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost:21080'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\"Microsoft Edge\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.62'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => '_identity-app-backend=c4a0d5b8b0f3011ade62941aadc337f8f6e1d114d1a4c749bcfadcfece36473fa%3A2%3A%7Bi%3A0%3Bs%3A21%3A%22_identity-app-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22Ee18QaPm3qtF9R3TvHnayMMyJh08HF40%22%2C2592000%5D%22%3B%7D; _identity-backend=978259ec763a25eaacd29c309d69d43548f6f7e336019d1efc6a2922c62aed64a%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B2%2C%22SVfsEPDTLIrJw46gjNn940m9L1DxoJ2R%22%2C2592000%5D%22%3B%7D; _csrf-backend=c446cf3f3486e252735257bb3170e346c062093bbd36064e14356f6e938751d6a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22G9x7onY4QHPb3V6DrHqWRPZBBvvmq7X6%22%3B%7D; advanced-backend=b362545a2ddb7014c7c01bb6b884e759'
+    'PATH' => '/app:/app/vendor/bin:/root/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.56 (Debian) Server at localhost Port 21080</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.56 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '172.18.0.13'
+    'SERVER_PORT' => '21080'
+    'REMOTE_ADDR' => '172.18.0.1'
+    'DOCUMENT_ROOT' => '/app/backend/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/app/backend/web'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/app/backend/web/index.php'
+    'REMOTE_PORT' => '35346'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1680572861.7886
+    'REQUEST_TIME' => 1680572861
+    'argv' => []
+    'argc' => 0
+]
