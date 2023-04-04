@@ -1,0 +1,1 @@
+docker-compose -f docker-compose.build.yml exec $1 bash
