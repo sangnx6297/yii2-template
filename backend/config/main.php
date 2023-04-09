@@ -30,6 +30,13 @@ return [
         ],
     ],
     'components' => [
+        'rtc' => [
+            'class' => \common\widgets\webrtc\models\RtcConfig::class,
+            'wssServer' => getenv("RTC_WS_HOST"),
+            'serverPath' => getenv("RTC_WS_PATH"),
+            'webSocketPort' => getenv("RTC_WS_PORT"),
+            'sipDomain' => getenv("RTC_SIP_DOMAIN"),
+        ],
         'view' => [
             'theme' => [
                 'pathMap' => [
@@ -41,7 +48,8 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'class' => \common\components\User::class,
+            'identityClass' => \common\models\User::class,
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
             'loginUrl' => ['site/login']

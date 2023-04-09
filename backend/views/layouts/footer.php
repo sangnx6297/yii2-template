@@ -1,12 +1,14 @@
 
 <?=\common\widgets\webrtc\RtcDialPopupWidget::widget([
-    'wssServer' => 'pbx.lsat.vn',
-    'webSocketPort' => '443',
-    'serverPath' => '/ws',
+    'wssServer' => Yii::$app->rtc->wssServer,
+    'webSocketPort' => Yii::$app->rtc->webSocketPort,
+    'serverPath' => Yii::$app->rtc->serverPath,
     'profileName' => Yii::$app->user->identity->username,
-    'sipDomain' =>'pbx.lsat.vn',
-    'sipUsername' => "2902",
-    'sipPassword' => "Cis@2902",
+    'sipDomain' => Yii::$app->rtc->sipDomain,
+//    'sipUsername' => Yii::$app->session->get(Yii::$app->user->id."_sip_username"),
+//    'sipPassword' => Yii::$app->session->get(Yii::$app->user->id."_sip_secret"),
+    'sipUsername' => Yii::$app->session->get(Yii::$app->user->id."_sip_username"),
+    'sipPassword' => Yii::$app->session->get(Yii::$app->user->id."_sip_secret"),
 ])?>
 <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
