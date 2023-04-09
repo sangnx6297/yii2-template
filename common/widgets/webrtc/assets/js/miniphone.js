@@ -65,7 +65,7 @@ const availableLang = ["ja", "zh-hans", "zh", "ru", "tr", "nl", "es", "de", "pl"
  * Image Assets
  * Note: You can specify the assets to use below in array format
  */
-let imagesDirectory = getDbItem("imagesDirectory", "/material/avatars/");     // Directory For Image Assets eg: images/
+let imagesDirectory = getDbItem("imagesDirectory", bowerDist+"/avatars/");     // Directory For Image Assets eg: images/
 let defaultAvatars = getDbItem("defaultAvatars", "avatars/default.0.webp,avatars/default.1.webp,avatars/default.2.webp,avatars/default.3.webp,avatars/default.4.webp,avatars/default.5.webp,avatars/default.6.webp,avatars/default.7.webp,avatars/default.8.webp"); 
 let wallpaperLight = getDbItem("wallpaperLight", "wallpaper.light.webp");  // Wallpaper for Light Theme
 let wallpaperDark = getDbItem("wallpaperDark", "wallpaper.dark.webp");     // Wallpaper for Dark Theme
@@ -8770,7 +8770,7 @@ function AddLineHtml(lineObj, direction){
     // html += "</div>"
 
     // Profile UI
-    html += "<div class=contact style=\"cursor: unset; float: left;\">";
+    html += "<div class=contact style=\"cursor: unset;\">";
     html += "<div id=\"line-ui-"+ lineObj.LineNumber +"-LineIcon\" class=lineIcon>"+ lineObj.LineNumber +"</div>";
     html += "<div id=\"line-ui-"+ lineObj.LineNumber +"-DisplayLineNo\" class=contactNameText><i class=\"fa fa-phone\"></i> "+ lang.line +" "+ lineObj.LineNumber +"</div>";
     html += "<div class=presenceText style=\"max-width:150px\">"+ lineObj.DisplayNumber +"</div>";
@@ -8792,8 +8792,8 @@ function AddLineHtml(lineObj, direction){
     html += "</div>";
 
     // Active Call Ui
-    html += "<div id=\"line-"+ lineObj.LineNumber +"-ActiveCall\" class=cleanScroller style=\"display:none; float:right; height: 50px; width: 80%\">";
-    html += "<div style=\"margin: auto;  width: 27%; padding: 0px;\">";
+    html += "<div id=\"line-"+ lineObj.LineNumber +"-ActiveCall\" class=cleanScroller style=\"display:none;\">";
+    html += "<div style=\"margin: auto;  width: inherit; padding: 0px;\">";
 
     // Mute
     html += "<button id=\"line-"+ lineObj.LineNumber +"-btn-Mute\" onclick=\"MuteSession('"+ lineObj.LineNumber +"')\" class=\"roundButtons miniDialButtons lineIcon\" title=\""+ lang.mute +"\"><i class=\"fa fa-microphone-slash\"></i></button>";

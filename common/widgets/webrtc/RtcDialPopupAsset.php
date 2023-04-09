@@ -3,6 +3,7 @@ namespace common\widgets\webrtc;
 
 use hail812\adminlte3\assets\FontAwesomeAsset;
 use yii\bootstrap4\BootstrapWidgetTrait;
+use yii\debug\DebugAsset;
 
 class RtcDialPopupAsset extends \yii\web\AssetBundle
 {
@@ -31,6 +32,7 @@ class RtcDialPopupAsset extends \yii\web\AssetBundle
         'css/RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff2',
         'css/fontawesome-webfont.woff2',
         'css/croppie.css',
+        'css/toolbar.css',
     ];
 
     /**
@@ -51,6 +53,7 @@ class RtcDialPopupAsset extends \yii\web\AssetBundle
         'js/strophe-1.4.1.umd.min.js',
         'js/script.js',
         'js/sw.js',
+        'js/toolbar.js',
     ];
     /**
      * @inheritdoc

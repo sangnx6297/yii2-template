@@ -14,12 +14,13 @@ if (!YII_ENV_PROD) {
 //    $config['bootstrap'][] = 'debug';
 //    $config['modules']['debug'] = [
 //        'class' => 'yii\debug\Module',
+//        'allowedIPs' => ['*'],
 //    ];
 
-//    $config['bootstrap'][] = 'gii';
-//    $config['modules']['gii'] = [
-//        'class' => 'yii\gii\Module',
-//    ];
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+    ];
 
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',

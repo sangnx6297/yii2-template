@@ -91,7 +91,7 @@ return [
         'class' => \mdm\admin\components\AccessControl::class,
         'allowActions' => [
             'site/*',
-            'lang/*'
+            'debug/*',
         ],
     ],
     'params' => $params,

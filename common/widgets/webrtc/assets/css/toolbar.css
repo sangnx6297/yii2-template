@@ -1,0 +1,381 @@
+
+.mini-phone-toolbar__icon:hover {
+    cursor: pointer;
+}
+
+.mini-phone-toolbar_title__collapsed {
+    width: 50% !important;
+    display: block;
+}
+
+.mini-phone-toolbar_title__expanded {
+    display: none;
+}
+
+#mini-phone-toolbar-logo {
+    position: fixed;
+    right: 31px;
+    bottom: 4px
+}
+
+@media print {
+    .mini-phone-toolbar {
+        display: none !important
+    }
+}
+
+.mini-phone-toolbar {
+    font: 11px Verdana, Arial, sans-serif;
+    text-align: left;
+    width: 96px;
+    transition: width .3s ease;
+    z-index: 1000000;
+}
+
+.mini-phone-toolbar.mini-phone-toolbar_active:not(.mini-phone-toolbar_animating) .mini-phone-toolbar__bar {
+    overflow: visible;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.mini-phone-toolbar.mini-phone-toolbar_iframe_active:not(.mini-phone-toolbar_animating) .mini-phone-toolbar__resize-handle {
+    display: block;
+    height: 4px;
+    cursor: ns-resize;
+    margin-bottom: 0;
+    z-index: 1000001;
+    position: absolute;
+    left: 0;
+    right: 0
+}
+
+.mini-phone-toolbar:not(.mini-phone-toolbar_active) .mini-phone-toolbar__bar, .mini-phone-toolbar.mini-phone-toolbar_animating .mini-phone-toolbar__bar {
+    height: 40px
+}
+
+.mini-phone-toolbar_active {
+    width: 24%
+}
+
+.mini-phone-toolbar_active .mini-phone-toolbar__toggle-icon {
+    -webkit-transform: rotate(0);
+    transform: rotate(0)
+}
+
+.mini-phone-toolbar_position_top {
+    margin: 0 0 20px 0;
+    width: 100%
+}
+
+.mini-phone-toolbar_position_bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 0
+}
+
+.mini-phone-toolbar__bar {
+    position: relative;
+    padding: 0;
+    font: 11px Verdana, Arial, sans-serif;
+    text-align: left;
+    overflow: hidden;
+    box-sizing: content-box;
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    background: -moz-linear-gradient(top, #fff 0%, #f7f7f7 100%);
+    background: -webkit-linear-gradient(top, #fff 0%, #f7f7f7 100%);
+    background: linear-gradient(to bottom, #fff 0%, #f7f7f7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f7f7f7', GradientType=0);
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    direction: ltr
+}
+
+.mini-phone-toolbar__bar::after {
+    content: '';
+    display: table;
+    clear: both
+}
+
+.mini-phone-toolbar__view {
+    height: 0;
+    overflow: hidden;
+    background: white
+}
+
+.mini-phone-toolbar__view iframe {
+    margin: 0;
+    padding: 10px 0 0;
+    height: 100%;
+    width: 100%;
+    border: 0
+}
+
+.mini-phone-toolbar_iframe_active .mini-phone-toolbar__view {
+    height: 100%
+}
+
+.mini-phone-toolbar_iframe_active .mini-phone-toolbar__toggle-icon {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+.mini-phone-toolbar_iframe_active .mini-phone-toolbar__external {
+    display: block
+}
+
+.mini-phone-toolbar_iframe_animating .mini-phone-toolbar__view {
+    transition: height .3s ease
+}
+
+.mini-phone-toolbar__block {
+    margin: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.11);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.11);
+    padding: 4px 8px;
+    line-height: 32px;
+    white-space: nowrap
+}
+
+@media (max-width: 767.98px) {
+    .mini-phone-toolbar__block {
+        flex-grow: 1;
+        text-align: center
+    }
+}
+
+.mini-phone-toolbar__block a {
+    display: inline-block;
+    text-decoration: none;
+    color: black
+}
+
+.mini-phone-toolbar__block img {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px
+}
+
+.mini-phone-toolbar__block_active, .mini-phone-toolbar__ajax:hover {
+    background: #f7f7f7;
+    background: -moz-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+    background: -webkit-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+    background: linear-gradient(to bottom, #f7f7f7 0%, #e0e0e0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#e0e0e0', GradientType=0)
+}
+
+.mini-phone-toolbar__label {
+    display: inline-block;
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 14px;
+    white-space: nowrap;
+    vertical-align: middle;
+    max-width: 100px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #737373;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px
+}
+
+.mini-phone-toolbar__label:empty {
+    display: none
+}
+
+a.mini-phone-toolbar__label:hover, a.mini-phone-toolbar__label:focus {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.mini-phone-toolbar__label_important, .mini-phone-toolbar__label_error {
+    background-color: #b94a48
+}
+
+.mini-phone-toolbar__label_important[href] {
+    background-color: #953b39
+}
+
+.mini-phone-toolbar__label_warning, .mini-phone-toolbar__badge_warning {
+    background-color: #f89406
+}
+
+.mini-phone-toolbar__label_warning[href] {
+    background-color: #c67605
+}
+
+.mini-phone-toolbar__label_success {
+    background-color: #217822
+}
+
+.mini-phone-toolbar__label_success[href] {
+    background-color: #356635
+}
+
+.mini-phone-toolbar__label_info {
+    background-color: #0b72b8
+}
+
+.mini-phone-toolbar__label_info[href] {
+    background-color: #2d6987
+}
+
+.mini-phone-toolbar__label_inverse, .mini-phone-toolbar__badge_inverse {
+    background-color: #333333
+}
+
+.mini-phone-toolbar__label_inverse[href], .mini-phone-toolbar__badge_inverse[href] {
+    background-color: #1a1a1a
+}
+
+.mini-phone-toolbar__title {
+    background: #f7f7f7;
+    background: -moz-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+    background: -webkit-linear-gradient(top, #f7f7f7 0%, #e0e0e0 100%);
+    background: linear-gradient(to bottom, #f7f7f7 0%, #e0e0e0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#e0e0e0', GradientType=0)
+}
+
+.mini-phone-toolbar__block_last {
+    width: 80px;
+    height: 40px;
+    float: left
+}
+
+.mini-phone-toolbar__toggle, .mini-phone-toolbar__external {
+    cursor: pointer;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    font-weight: 100;
+    line-height: 28px;
+    color: #ffffff;
+    text-align: center;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    transition: opacity .3s ease
+}
+
+.mini-phone-toolbar__toggle:hover, .mini-phone-toolbar__toggle:focus, .mini-phone-toolbar__external:hover, .mini-phone-toolbar__external:focus {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.9;
+    filter: alpha(opacity=90)
+}
+
+.mini-phone-toolbar__toggle-icon, .mini-phone-toolbar__external-icon {
+    display: inline-block;
+    background-position: 50% 50%;
+    background-repeat: no-repeat
+}
+
+.mini-phone-toolbar__toggle {
+    right: 10px;
+    bottom: 4px
+}
+
+.mini-phone-toolbar__toggle-icon {
+    padding: 7px 0;
+    width: 10px;
+    height: 16px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDUwIDUwIj48cGF0aCBmaWxsPSIjNDQ0IiBkPSJNMTUuNTYzIDQwLjgzNmEuOTk3Ljk5NyAwIDAgMCAxLjQxNCAwbDE1LTE1YTEgMSAwIDAgMCAwLTEuNDE0bC0xNS0xNWExIDEgMCAwIDAtMS40MTQgMS40MTRMMjkuODU2IDI1LjEzIDE1LjU2MyAzOS40MmExIDEgMCAwIDAgMCAxLjQxNHoiLz48L3N2Zz4=");
+    transition: -webkit-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.mini-phone-toolbar__external {
+    display: none;
+    right: 50px;
+    bottom: 4px
+}
+
+.mini-phone-toolbar__external-icon {
+    padding: 8px 0;
+    width: 14px;
+    height: 14px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDUwIDUwIj48cGF0aCBmaWxsPSIjNDQ0IiBkPSJNMzkuNjQyIDkuNzIyYTEuMDEgMS4wMSAwIDAgMC0uMzgyLS4wNzdIMjguMTAzYTEgMSAwIDAgMCAwIDJoOC43NDNMMjEuNyAyNi43OWExIDEgMCAwIDAgMS40MTQgMS40MTVMMzguMjYgMTMuMDZ2OC43NDNhMSAxIDAgMCAwIDIgMFYxMC42NDZhMS4wMDUgMS4wMDUgMCAwIDAtLjYxOC0uOTI0eiIvPjxwYXRoIGQ9Ik0zOS4yNiAyNy45ODVhMSAxIDAgMCAwLTEgMXYxMC42NmgtMjh2LTI4aDEwLjY4M2ExIDEgMCAwIDAgMC0ySDkuMjZhMSAxIDAgMCAwLTEgMXYzMGExIDEgMCAwIDAgMSAxaDMwYTEgMSAwIDAgMCAxLTF2LTExLjY2YTEgMSAwIDAgMC0xLTF6Ii8+PC9zdmc+")
+}
+
+.mini-phone-toolbar__switch-icon {
+    margin-left: 10px;
+    padding: 5px 10px;
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDUwIDUwIiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGQ9Im00MS4xIDIzYy0wLjYgMC0xIDAuNC0xIDF2MTAuN2wtMjUuNi0wLjFjMCAwIDAtMiAwLTIuOCAwLTAuOC0wLjctMS0xLTAuNmwtMy41IDMuNWMtMC42IDAuNi0wLjYgMS4zIDAgMmwzLjQgMy40YzAuNCAwLjQgMS4xIDAuMiAxLTAuNmwwLTIuOWMwIDAgMjAuOCAwLjEgMjYuNiAwIDAuNiAwIDEtMC40IDEtMXYtMTEuN2MwLTAuNi0wLjQtMS0xLTF6TTkgMjYuOSA5IDI2LjkgOSAyNi45IDkgMjYuOSIvPjxwYXRoIGQ9Im05IDI2LjljMC42IDAgMS0wLjQgMS0xdi0xMC43bDI1LjYgMC4xYzAgMCAwIDIgMCAyLjggMCAwLjggMC43IDEgMSAwLjZsMy41LTMuNWMwLjYtMC42IDAuNi0xLjMgMC0ybC0zLjQtMy40Yy0wLjQtMC40LTEuMS0wLjItMSAwLjZsMCAyLjljMCAwLTIwLjgtMC4xLTI2LjYgMC0wLjYgMC0xIDAuNC0xIDF2MTEuN2MwIDAuNiAwLjQgMSAxIDF6Ii8+PC9zdmc+")
+}
+
+.mini-phone-toolbar__ajax {
+    position: relative
+}
+
+.mini-phone-toolbar__ajax:hover .mini-phone-toolbar__ajax_info, .mini-phone-toolbar__ajax:focus .mini-phone-toolbar__ajax_info {
+    visibility: visible
+}
+
+.mini-phone-toolbar__ajax a {
+    color: #337ab7
+}
+
+.mini-phone-toolbar__ajax table {
+    width: 100%;
+    table-layout: auto;
+    border-spacing: 0;
+    border-collapse: collapse
+}
+
+.mini-phone-toolbar__ajax table td {
+    padding: 4px;
+    font-size: 12px;
+    line-height: normal;
+    vertical-align: top;
+    border-top: 1px solid #ddd
+}
+
+.mini-phone-toolbar__ajax table th {
+    padding: 4px;
+    font-size: 11px;
+    line-height: normal;
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd
+}
+
+.mini-phone-toolbar__ajax_info {
+    visibility: hidden;
+    transition: visibility .2s linear;
+    background-color: white;
+    box-shadow: inset 0 -10px 10px -10px #e1e1e1;
+    position: absolute;
+    bottom: 40px;
+    left: -1px;
+    padding: 10px;
+    max-width: 480px;
+    max-height: 480px;
+    word-wrap: break-word;
+    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    z-index: 1000001
+}
+
+.mini-phone-toolbar__ajax_request_status {
+    color: white;
+    padding: 2px 5px
+}
+
+.mini-phone-toolbar__ajax_request_url {
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}

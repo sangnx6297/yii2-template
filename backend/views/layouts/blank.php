@@ -23,8 +23,7 @@ use yii\helpers\Html;
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f6f6">
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#292929">
-    <link rel="apple-touch-icon" href="icons/512.png">
-    <link rel="manifest" href="/material/manifest.json">
+
 
     <?php $this->head() ?>
 

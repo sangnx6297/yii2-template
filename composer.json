@@ -26,10 +26,10 @@
         "kartik-v/yii2-widget-activeform": "@dev",
         "mzdani/yii2-adminlte-menu-widget": "@dev",
         "symfony/browser-kit": "^5.4",
-        "kriss/yii2-log-reader": "2.*"
+        "kriss/yii2-log-reader": "2.*",
+        "yiisoft/yii2-debug": "^2.1"
     },
     "require-dev": {
-        "yiisoft/yii2-debug": "~2.1.0",
         "yiisoft/yii2-gii": "~2.2.0",
         "yiisoft/yii2-faker": "~2.0.0",
         "codeception/codeception": "^4.0",
