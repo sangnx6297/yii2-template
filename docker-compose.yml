@@ -34,7 +34,7 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       # Mount source-code for development
       - ./:/app
-#      - ./backend/apache2/conf.d:/etc/apache2/sites-available:delegated
+      - ./backend/apache2/conf.d:/etc/apache2/sites-available:delegated
     networks:
       - lcs-internal-service-network
 

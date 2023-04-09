@@ -26,7 +26,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'register', 'test', 'error'],
+                        'actions' => ['login', 'register', 'test', 'error', 'rtc'],
                         'allow' => true,
                     ],
                     [
@@ -125,5 +125,10 @@ class SiteController extends Controller
 
     public function actionTest(){
         var_dump(Helper::checkRoute('/admin/user',  Yii::$app->getRequest()->get(), Yii::$app->user));
+    }
+
+    public function actionRtc(){
+        $this->layout = 'blank';
+        return $this->render('rtc');
     }
 }

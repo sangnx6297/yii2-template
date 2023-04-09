@@ -76,20 +76,18 @@ if (!YII_ENV_PROD) {
         'class' => 'yii\gii\Module',
         'allowedIPs' => ['*'],
         'generators' => [
-            'crud' => [
-                'class' => 'yii\gii\generators\crud\Generator',
-                'templates' => [
-                    // 'legacy' => '@common/codetemplate/crud-legacy',
-                    'new-with-workflow' => '@vendor/hail/yii2-adminlte3/src/gii/generators/curd/crud-new',
-//                    'base-without-workflow' => '@common/codetemplate/crud-base',
-                ],
-            ],
+            'crud' => [ // generator name
+                'class' => 'yii\gii\generators\crud\Generator', // generator class
+                'templates' => [ // setting for our templates
+                    'yii2-adminlte3' => '@vendor/hail812/yii2-adminlte3/src/gii/generators/crud/default' // template name => path to template
+                ]
+            ]
         ],
     ];
-    $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = [
-        'class' => 'yii\debug\Module',
-        'allowedIPs' => ['*'],
-    ];
+//    $config['bootstrap'][] = 'debug';
+//    $config['modules']['debug'] = [
+//        'class' => 'yii\debug\Module',
+//        'allowedIPs' => ['*'],
+//    ];
 }
 return $config;

@@ -44,7 +44,7 @@
             return [
                 'label' => Yii::t('menu', $menu['name']),
                 'url' => \mzdani\MenuHelper::parseRoute($menu['route']),
-                //'option' => $data,
+                'option' => [''],
                 'icon' => $menu['data'],
                 'badge' => $menu['badge'] ?? null,
                 'items' => $menu['children'],
