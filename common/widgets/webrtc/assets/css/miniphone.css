@@ -1,5 +1,5 @@
-/* Style Sheet for Browser Phone */
 
+/* Style Sheet for Browser Mini Phone */
 
 .miniDialButtons{
     font-size: 18px !important;
@@ -9,7 +9,19 @@
     height:45px !important;
     margin: 0 10px 0 0 !important;
 }
+.miniStreamSelected {
+    height: 10%;
+    width: 100%;
 
+}
+
+.miniStreamSection {
+    padding: 5px;
+    vertical-align: top;
+    position:relative;
+}
+
+/* Style Sheet for Browser Phone */
 .loading{
     background-color: #FFFFFF;
     position: fixed;

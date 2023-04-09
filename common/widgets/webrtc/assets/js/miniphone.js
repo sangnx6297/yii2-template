@@ -98,7 +98,7 @@ let VoicemailDid = getDbItem("VoicemailDid", "");                               
 let SubscribeVoicemailExpires = parseInt(getDbItem("SubscribeVoicemailExpires", 300)); // Voceimail Subscription expiry time (in seconds)
 let ContactUserName = getDbItem("ContactUserName", "");                                // Optional name for contact header uri
 let userAgentStr = getDbItem("UserAgentStr", "Browser Phone "+ appversion +" (SIPJS - "+ sipjsversion +") "+ navUserAgent);   // Set this to whatever you want.
-let hostingPrefix = getDbItem("HostingPrefix", "");                                    // Use if hosting off root directory. eg: "/phone/" or "/static/"
+let hostingPrefix = getDbItem("HostingPrefix", "/material/");                                    // Use if hosting off root directory. eg: "/phone/" or "/static/"
 let RegisterExpires = parseInt(getDbItem("RegisterExpires", 300));                     // Registration expiry time (in seconds)
 let RegisterExtraHeaders = getDbItem("RegisterExtraHeaders", "{}");                    // Parsable Json string of headers to include in register process. eg: '{"foo":"bar"}'
 let RegisterExtraContactParams = getDbItem("RegisterExtraContactParams", "{}");        // Parsable Json string of extra parameters add to the end (after >) of contact header during register. eg: '{"foo":"bar"}'
@@ -604,7 +604,7 @@ $(document).ready(function () {
 
     // Load Language File
     // ==================
-    $.getJSON(hostingPrefix + "/material/lang/en.json", function(data){
+    $.getJSON(hostingPrefix + "lang/en.json", function(data){
         lang = data;
         console.log("English Language Pack loaded: ", lang);
         if(loadAlternateLang == true){
@@ -1451,6 +1451,19 @@ function InitUi(){
     }
     if(profileName) $("#UserCallID").html(profilePrepend +""+ profileName);
 
+
+
+    $("#SettingsMenu").attr("title", lang.configure_extension)
+    $("#SettingsMenu").on('click', function(event){
+        if(UiCustomConfigMenu == true){
+            if(typeof web_hook_on_config_menu !== 'undefined') {
+                web_hook_on_config_menu(event);
+            }
+        } else {
+            ShowMyProfileMenu(this);
+        }
+    });
+
     // Take out loading UI
     $(".loading").remove();
 
@@ -1470,10 +1483,10 @@ function InitUi(){
     }
 
     // Check if you account is created
-    if(profileUserID == null ){
-        ShowMyProfile();
-        return; // Don't load any more, after applying settings, the page must reload.
-    }
+    // if(profileUserID == null ){
+    //     ShowMyProfile();
+    //     return; // Don't load any more, after applying settings, the page must reload.
+    // }
 
     PopulateBuddyList();
 
@@ -1495,10 +1508,17 @@ function ShowMyProfileMenu(obj){
     var enabledHtml = " <i class=\"fa fa-check\" style=\"float: right; line-height: 18px;\"></i>";
 
     var items = [];
-    items.push({ icon: "fa fa-refresh", text: lang.refresh_registration, value: 1});
-    items.push({ icon: "fa fa-wrench", text: lang.configure_extension, value: 2});
+
+    if (userAgent == null || !userAgent.isRegistered()) {
+        items.push({icon: "fa fa-user", text: "Agent Registration", value: 0});
+    } else {
+        items.push({icon: "fa fa-refresh", text: lang.refresh_registration, value: 1});
+        items.push({icon: "fa fa-sign-out", text: "Agent Un-Registration", value: -1});
+    }
+
+    // items.push({ icon: "fa fa-wrench", text: lang.configure_extension, value: 2});
     items.push({ icon: null, text: "-" });
-    items.push({ icon: "fa fa-user-plus", text: lang.add_someone, value: 3});
+    // items.push({ icon: "fa fa-user-plus", text: lang.add_someone, value: 3});
     // items.push({ icon: "fa fa-users", text: lang.create_group, value: 4}); // TODO
     items.push({ icon : null, text: "-" });
     if(AutoAnswerEnabled == true){
@@ -1535,6 +1555,11 @@ function ShowMyProfileMenu(obj){
         selectEvent : function( event, ui ) {
             var id = ui.item.attr("value");
             HidePopup();
+            if(id == "-1") {
+                Unregister(false);
+            } if(id == "0") {
+                CreateUserAgent();
+            }
             if(id == "1") {
                 RefreshRegistration();
             }
@@ -2092,8 +2117,12 @@ function ReceiveCall(session) {
         var now = moment.utc();
         var duration = moment.duration(now.diff(startTime));
         var timeStr = formatShortDuration(duration.asSeconds());
+        $("#miniphone-timer").html(timeStr);
+        ``
         $("#line-" + lineObj.LineNumber + "-timer").html(timeStr);
         $("#line-" + lineObj.LineNumber + "-datetime").html(timeStr);
+
+
     }, 1000);
     lineObj.SipSession.data.earlyReject = false;
     Lines.push(lineObj);
@@ -2159,6 +2188,7 @@ function ReceiveCall(session) {
     // Create the call HTML 
     AddLineHtml(lineObj, "inbound");
     $("#line-" + lineObj.LineNumber + "-msg").html(lang.incoming_call);
+    $("#miniphone-msg").html(lang.incoming_call);
     $("#line-" + lineObj.LineNumber + "-msg").show();
     $("#line-" + lineObj.LineNumber + "-timer").show();
     if(lineObj.SipSession.data.withvideo){
@@ -2356,6 +2386,7 @@ function AnswerAudioCall(lineNumber) {
     if(HasAudioDevice == false){
         Alert(lang.alert_no_microphone);
         $("#line-" + lineObj.LineNumber + "-msg").html(lang.call_failed);
+        $("#miniphone-msg").html(lang.call_failed);
         $("#line-" + lineObj.LineNumber + "-AnswerCall").hide();
         return;
     }
@@ -2439,6 +2470,7 @@ function AnswerVideoCall(lineNumber) {
     if(HasAudioDevice == false){
         Alert(lang.alert_no_microphone);
         $("#line-" + lineObj.LineNumber + "-msg").html(lang.call_failed);
+        $("#miniphone-msg").html(lang.call_failed);
         $("#line-" + lineObj.LineNumber + "-AnswerCall").hide();
         return;
     }
@@ -2543,6 +2575,7 @@ function RejectCall(lineNumber) {
     if (session == null) {
         console.warn("Reject failed, null session");
         $("#line-" + lineObj.LineNumber + "-msg").html(lang.call_failed);
+        $("#miniphone-msg").html(lang.call_failed);
         $("#line-" + lineObj.LineNumber + "-AnswerCall").hide();
     }
     if(session.state == SIP.SessionState.Established){
@@ -2560,6 +2593,7 @@ function RejectCall(lineNumber) {
     }
 
     $("#line-" + lineObj.LineNumber + "-msg").html(lang.call_rejected);
+    $("#miniphone-msg").html(lang.call_rejected);
 
     session.data.terminateby = "us";
     session.data.reasonCode = 486;
@@ -2628,6 +2662,7 @@ function onInviteAccepted(lineObj, includeVideo, response){
         var timeStr = formatShortDuration(duration.asSeconds());
         $("#line-" + lineObj.LineNumber + "-timer").html(timeStr);
         $("#line-" + lineObj.LineNumber + "-datetime").html(timeStr);
+        $("#miniphone-timer").html(timeStr);
     }, 1000);
     session.isOnHold = false;
     session.data.started = true;
@@ -2732,6 +2767,7 @@ function onInviteAccepted(lineObj, includeVideo, response){
     lineObj.RemoteSoundMeter = StartRemoteAudioMediaMonitoring(lineObj.LineNumber, session);
 
     $("#line-" + lineObj.LineNumber + "-msg").html(lang.call_in_progress);
+    $("#miniphone-msg").html(lang.call_in_progress);
 
     if(includeVideo && StartVideoFullScreen) ExpandVideoArea(lineObj.LineNumber);
 
@@ -2741,6 +2777,7 @@ function onInviteAccepted(lineObj, includeVideo, response){
 // Outgoing INVITE
 function onInviteTrying(lineObj, response){
     $("#line-" + lineObj.LineNumber + "-msg").html(lang.trying);
+    $("#miniphone-msg").html(lang.trying);
 
     // Custom Web hook
     if(typeof web_hook_on_modify !== 'undefined') web_hook_on_modify("trying", lineObj.SipSession);
@@ -2752,7 +2789,8 @@ function onInviteProgress(lineObj, response){
     // response.message.reasonPhrase
     if(response.message.statusCode == 180){
         $("#line-" + lineObj.LineNumber + "-msg").html(lang.ringing);
-        
+        $("#miniphone-msg").html(lang.ringing);
+
         var soundFile = audioBlobs.EarlyMedia_European;
         if(UserLocale().indexOf("us") > -1) soundFile = audioBlobs.EarlyMedia_US;
         if(UserLocale().indexOf("gb") > -1) soundFile = audioBlobs.EarlyMedia_UK;
@@ -2790,6 +2828,7 @@ function onInviteProgress(lineObj, response){
     }
     else if(response.message.statusCode === 183){
         $("#line-" + lineObj.LineNumber + "-msg").html(response.message.reasonPhrase + "...");
+        $("#miniphone-msg").html(response.message.reasonPhrase + "...");
 
         // Add UI to allow DTMF
         $("#line-" + lineObj.LineNumber + "-early-dtmf").show();
@@ -2800,6 +2839,7 @@ function onInviteProgress(lineObj, response){
         // 199 = Call is Terminated (Early Dialog)
 
         $("#line-" + lineObj.LineNumber + "-msg").html(response.message.reasonPhrase + "...");
+        $("#miniphone-msg").html(response.message.reasonPhrase + "...");
     }
 
     // Custom Web hook
@@ -2822,6 +2862,7 @@ function onInviteRedirected(response){
 function onSessionReceivedBye(lineObj, response){
     // They Ended the call
     $("#line-" + lineObj.LineNumber + "-msg").html(lang.call_ended);
+    $("#miniphone-msg").html(lang.call_ended);
     console.log("Call ended, bye!");
 
     lineObj.SipSession.data.terminateby = "them";
@@ -5430,6 +5471,7 @@ function VideoCall(lineObj, dialledNumber, extraHeaders) {
     }
 
     $("#line-" + lineObj.LineNumber + "-msg").html(lang.starting_video_call);
+    $("#miniphone-msg").html(lang.starting_video_call);
     $("#line-" + lineObj.LineNumber + "-timer").show();
 
     var startTime = moment.utc();
@@ -5450,6 +5492,7 @@ function VideoCall(lineObj, dialledNumber, extraHeaders) {
         var duration = moment.duration(now.diff(startTime)); 
         var timeStr = formatShortDuration(duration.asSeconds());
         $("#line-" + lineObj.LineNumber + "-timer").html(timeStr);
+        $("#miniphone-timer").html(timeStr);
         $("#line-" + lineObj.LineNumber + "-datetime").html(timeStr);
     }, 1000);
     lineObj.SipSession.data.VideoSourceDevice = getVideoSrcID();
@@ -5633,6 +5676,7 @@ function AudioCall(lineObj, dialledNumber, extraHeaders) {
     }
 
     $("#line-" + lineObj.LineNumber + "-msg").html(lang.starting_audio_call);
+    $("#miniphone-msg").html(lang.starting_audio_call);
     $("#line-" + lineObj.LineNumber + "-timer").show();
 
     var startTime = moment.utc();
@@ -5653,6 +5697,7 @@ function AudioCall(lineObj, dialledNumber, extraHeaders) {
         var duration = moment.duration(now.diff(startTime)); 
         var timeStr = formatShortDuration(duration.asSeconds());
         $("#line-" + lineObj.LineNumber + "-timer").html(timeStr);
+        $("#miniphone-timer").html(timeStr);
         $("#line-" + lineObj.LineNumber + "-datetime").html(timeStr);
     }, 1000);
     lineObj.SipSession.data.VideoSourceDevice = null;
@@ -5980,6 +6025,7 @@ function StartRecording(lineNum){
     session.data.recordings[session.data.recordings.length-1].startTime = utcDateNow();
 
     $("#line-" + lineObj.LineNumber + "-msg").html(lang.call_recording_started);
+    $("#miniphone-msg").html(lang.call_recording_started);
 
     updateLineScroll(lineNum);
 }
@@ -6053,6 +6099,7 @@ function StopRecording(lineNum, noConfirm){
                 window.clearInterval(session.data.recordingRedrawInterval);
 
                 $("#line-" + lineObj.LineNumber + "-msg").html(lang.call_recording_stopped);
+                $("#miniphone-msg").html(lang.call_recording_stopped);
 
                 updateLineScroll(lineNum);
             } 
@@ -6488,6 +6535,7 @@ function BlindTransfer(lineNum) {
 
                 // TODO: use lang pack
                 $("#line-" + lineNum + "-msg").html("Call Blind Transferred (Accepted)");
+                $("#miniphone-msg").html("Call Blind Transferred (Accepted)");
 
                 updateLineScroll(lineNum);
 
@@ -6504,6 +6552,7 @@ function BlindTransfer(lineNum) {
                 session.data.transfer[transferId].accept.eventTime = utcDateNow();
 
                 $("#line-" + lineNum + "-msg").html("Call Blind Failed!");
+                $("#miniphone-msg").html("Call Blind Failed!");
 
                 updateLineScroll(lineNum);
 
@@ -6518,6 +6567,7 @@ function BlindTransfer(lineNum) {
     });;
 
     $("#line-" + lineNum + "-msg").html(lang.call_blind_transfered);
+    $("#miniphone-msg").html(lang.call_blind_transfered);
 
     updateLineScroll(lineNum);
 }
@@ -6637,7 +6687,8 @@ function AttendedTransfer(lineNum){
             $("#line-"+ lineNum +"-btn-terminate-attended-transfer").hide();
     
             $("#line-"+ lineNum +"-msg").html(lang.attended_transfer_call_terminated);
-    
+            $("#miniphone-msg").html(lang.attended_transfer_call_terminated);
+
             updateLineScroll(lineNum);
     
             window.setTimeout(function(){
@@ -6691,6 +6742,7 @@ function AttendedTransfer(lineNum){
                 session.data.transfer[transferId].dispositionTime = utcDateNow();
 
                 $("#line-" + lineNum + "-msg").html(lang.attended_transfer_call_started);
+                $("#miniphone-msg").html(lang.attended_transfer_call_started);
             },
             onProgress:function(sip){
                 newCallStatus.html(lang.ringing);
@@ -6698,6 +6750,7 @@ function AttendedTransfer(lineNum){
                 session.data.transfer[transferId].dispositionTime = utcDateNow();
 
                 $("#line-" + lineNum + "-msg").html(lang.attended_transfer_call_started);
+                $("#miniphone-msg").html(lang.attended_transfer_call_started);
 
                 var CancelAttendedTransferBtn = $("#line-"+ lineNum +"-btn-cancel-attended-transfer");
                 CancelAttendedTransferBtn.off('click');
@@ -6713,7 +6766,8 @@ function AttendedTransfer(lineNum){
                     session.data.transfer[transferId].accept.eventTime = utcDateNow();
         
                     $("#line-" + lineNum + "-msg").html(lang.attended_transfer_call_cancelled);
-        
+                    $("#miniphone-msg").html(lang.attended_transfer_call_cancelled);
+
                     updateLineScroll(lineNum);
                 });
                 CancelAttendedTransferBtn.show();
@@ -6746,6 +6800,7 @@ function AttendedTransfer(lineNum){
                                 session.data.transfer[transferId].accept.eventTime = utcDateNow();
 
                                 $("#line-" + lineNum + "-msg").html(lang.attended_transfer_complete_accepted);
+                                $("#miniphone-msg").html(lang.attended_transfer_complete_accepted);
 
                                 updateLineScroll(lineNum);
 
@@ -6763,7 +6818,7 @@ function AttendedTransfer(lineNum){
                                 session.data.transfer[transferId].accept.disposition = sip.message.reasonPhrase;
                                 session.data.transfer[transferId].accept.eventTime = utcDateNow();
 
-                                $("#line-" + lineNum + "-msg").html("Attended Transfer Failed!");
+                                $("#miniphone-msg").html("Attended Transfer Failed!");
 
                                 updateLineScroll(lineNum);
                             }
@@ -6801,6 +6856,7 @@ function AttendedTransfer(lineNum){
                     $("#line-"+ lineNum +"-btn-terminate-attended-transfer").hide();
 
                     $("#line-" + lineNum + "-msg").html(lang.attended_transfer_call_ended);
+                    $("#miniphone-msg").html(lang.attended_transfer_call_ended);
 
                     updateLineScroll(lineNum);
 
@@ -6829,7 +6885,8 @@ function AttendedTransfer(lineNum){
                 $("#line-"+ lineNum +"-btn-terminate-attended-transfer").hide();
         
                 $("#line-"+ lineNum +"-msg").html(lang.attended_transfer_call_rejected);
-        
+                $("#miniphone-msg").html(lang.attended_transfer_call_rejected);
+
                 updateLineScroll(lineNum);
         
                 window.setTimeout(function(){
@@ -7024,7 +7081,8 @@ function ConferenceDial(lineNum){
             $("#line-"+ lineNum +"-btn-terminate-conference-call").hide();
     
             $("#line-"+ lineNum +"-msg").html(lang.conference_call_terminated);
-    
+            $("#miniphone-msg").html(lang.conference_call_terminated);
+
             updateLineScroll(lineNum);
     
             window.setTimeout(function(){
@@ -7105,6 +7163,7 @@ function ConferenceDial(lineNum){
                 session.data.confcalls[confCallId].dispositionTime = utcDateNow();
 
                 $("#line-" + lineNum + "-msg").html(lang.conference_call_started);
+                $("#miniphone-msg").html(lang.conference_call_started);
             },
             onProgress:function(sip){
                 newCallStatus.html(lang.ringing);
@@ -7112,6 +7171,7 @@ function ConferenceDial(lineNum){
                 session.data.confcalls[confCallId].dispositionTime = utcDateNow();
         
                 $("#line-" + lineNum + "-msg").html(lang.conference_call_started);
+                $("#miniphone-msg").html(lang.conference_call_started);
 
                 var CancelConferenceDialBtn = $("#line-"+ lineNum +"-btn-cancel-conference-dial");
                 CancelConferenceDialBtn.off('click');
@@ -7127,7 +7187,8 @@ function ConferenceDial(lineNum){
                     session.data.confcalls[confCallId].accept.eventTime = utcDateNow();
         
                     $("#line-" + lineNum + "-msg").html(lang.conference_call_cancelled);
-        
+                    $("#miniphone-msg").html(lang.conference_call_cancelled);
+
                     updateLineScroll(lineNum);
                 });
                 CancelConferenceDialBtn.show();
@@ -7213,7 +7274,8 @@ function ConferenceDial(lineNum){
                     $("#line-"+ lineNum +"-btn-terminate-conference-call").show();
         
                     $("#line-" + lineNum + "-msg").html(lang.conference_call_in_progress);
-        
+                    $("#miniphone-msg").html(lang.conference_call_in_progress);
+
                     JoinCallBtn.hide();
                     updateLineScroll(lineNum);
 
@@ -7242,6 +7304,7 @@ function ConferenceDial(lineNum){
                     session.data.confcalls[confCallId].accept.eventTime = utcDateNow();
 
                     $("#line-" + lineNum + "-msg").html(lang.conference_call_ended);
+                    $("#miniphone-msg").html(lang.conference_call_ended);
 
                     updateLineScroll(lineNum);
 
@@ -7269,7 +7332,8 @@ function ConferenceDial(lineNum){
                 $("#line-"+ lineNum +"-btn-terminate-conference-call").hide();
         
                 $("#line-"+ lineNum +"-msg").html(lang.conference_call_rejected);
-        
+                $("#miniphone-msg").html(lang.conference_call_rejected);
+
                 updateLineScroll(lineNum);
         
                 window.setTimeout(function(){
@@ -7306,6 +7370,7 @@ function cancelSession(lineNum) {
     }
 
     $("#line-" + lineNum + "-msg").html(lang.call_cancelled);
+    $("#miniphone-msg").html(lang.call_cancelled);
 }
 function holdSession(lineNum) {
     var lineObj = FindLineByNumber(lineNum);
@@ -7356,6 +7421,7 @@ function holdSession(lineNum) {
                 $("#line-" + lineNum + "-btn-Hold").hide();
                 $("#line-" + lineNum + "-btn-Unhold").show();
                 $("#line-" + lineNum + "-msg").html(lang.call_on_hold);
+                $("#miniphone-msg").html(lang.call_on_hold);
 
                 // Log Hold
                 if(!session.data.hold) session.data.hold = [];
@@ -7425,6 +7491,7 @@ function unholdSession(lineNum) {
                 $("#line-" + lineNum + "-btn-Hold").show();
                 $("#line-" + lineNum + "-btn-Unhold").hide();
                 $("#line-" + lineNum + "-msg").html(lang.call_in_progress);
+                $("#miniphone-msg").html(lang.call_in_progress);
 
                 // Log Hold
                 if(!session.data.hold) session.data.hold = [];
@@ -7473,6 +7540,7 @@ function MuteSession(lineNum){
     session.data.ismute = true;
 
     $("#line-" + lineNum + "-msg").html(lang.call_on_mute);
+    $("#miniphone-msg").html(lang.call_on_mute);
 
     updateLineScroll(lineNum);
 
@@ -7506,6 +7574,7 @@ function UnmuteSession(lineNum){
     session.data.ismute = false;
 
     $("#line-" + lineNum + "-msg").html(lang.call_off_mute);
+    $("#miniphone-msg").html(lang.call_off_mute);
 
     updateLineScroll(lineNum);
 
@@ -7526,6 +7595,7 @@ function endSession(lineNum) {
     });
 
     $("#line-" + lineNum + "-msg").html(lang.call_ended);
+    $("#miniphone-msg").html(lang.call_ended);
     $("#line-" + lineNum + "-ActiveCall").hide();
     $("#line-ui-" + lineNum).hide();
 
@@ -7577,7 +7647,8 @@ function sendDTMF(lineNum, itemStr) {
             }
         
             $("#line-" + lineNum + "-msg").html(lang.send_dtmf + ": "+ itemStr);
-        
+            $("#miniphone-msg").html(lang.send_dtmf + ": "+ itemStr);
+
             updateLineScroll(lineNum);
     
             // Custom Web hook
@@ -7597,6 +7668,7 @@ function switchVideoSource(lineNum, srcId){
     var session = lineObj.SipSession;
 
     $("#line-" + lineNum + "-msg").html(lang.switching_video_source);
+    $("#miniphone-msg").html(lang.switching_video_source);
 
     var supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
     var constraints = { 
@@ -7674,6 +7746,7 @@ function SendCanvas(lineNum){
     var session = lineObj.SipSession;
     
     $("#line-" + lineNum + "-msg").html(lang.switching_to_canvas);
+    $("#miniphone-msg").html(lang.switching_to_canvas);
 
     // Create scratch Pad
     RemoveScratchpad(lineNum);
@@ -7760,6 +7833,7 @@ function SendVideo(lineNum, src){
     $("#line-"+ lineNum +"-src-blank").prop("disabled", false);
 
     $("#line-" + lineNum + "-msg").html(lang.switching_to_shared_video);
+    $("#miniphone-msg").html(lang.switching_to_shared_video);
 
     $("#line-" + lineNum + "-scratchpad-container").hide();
     RemoveScratchpad(lineNum);
@@ -7887,6 +7961,7 @@ function ShareScreen(lineNum){
     var session = lineObj.SipSession;
 
     $("#line-" + lineNum + "-msg").html(lang.switching_to_shared_screen);
+    $("#miniphone-msg").html(lang.switching_to_shared_screen);
 
     var localStream = new MediaStream();
     var pc = session.sessionDescriptionHandler.peerConnection;
@@ -8032,6 +8107,7 @@ function DisableVideoStream(lineNum){
     localVideo.load();
 
     $("#line-" + lineNum + "-msg").html(lang.video_disabled);
+    $("#miniphone-msg").html(lang.video_disabled);
 }
 function ShowDtmfMenu(lineNum){
     console.log("Show DTMF");
@@ -8683,15 +8759,15 @@ function FindLineByNumber(lineNum) {
     return null;
 }
 function AddLineHtml(lineObj, direction){
-    var avatar = getPicture(lineObj.BuddyObj.identity);
+    // var avatar = getPicture(lineObj.BuddyObj.identity);
 
     var html = "<table id=\"line-ui-"+ lineObj.LineNumber +"\" class=stream cellspacing=0 cellpadding=0>";
     html += "<tr><td class=\"streamSection highlightSection\" style=\"height: 20px;\">";
 
     // Close|Return|Back Button
-    html += "<div style=\"float:left; margin:0px; padding:5px; height:38px; line-height:38px\">"
-    html += "<button id=\"line-"+ lineObj.LineNumber +"-btn-back\" onclick=\"CloseLine('"+ lineObj.LineNumber +"')\" class=roundButtons title=\""+ lang.back +"\"><i class=\"fa fa-chevron-left\"></i></button> ";
-    html += "</div>"
+    // html += "<div style=\"float:left; margin:0px; padding:5px; height:38px; line-height:38px\">"
+    // html += "<button id=\"line-"+ lineObj.LineNumber +"-btn-back\" onclick=\"CloseLine('"+ lineObj.LineNumber +"')\" class=roundButtons title=\""+ lang.back +"\"><i class=\"fa fa-chevron-left\"></i></button> ";
+    // html += "</div>"
 
     // Profile UI
     html += "<div class=contact style=\"cursor: unset; float: left;\">";
@@ -8956,6 +9032,8 @@ function AddLineHtml(lineObj, direction){
 
     $("#callingContent").append(html);
     $("#callingContent").show();
+    $("#miniphoneContent").hide();
+
     $("#line-"+ lineObj.LineNumber +"-AudioOrVideoCall").on("click", function(){
         RestoreCallControls(lineObj.LineNumber);
     });
@@ -8974,6 +9052,7 @@ function RemoveLine(lineObj){
     if(earlyReject != true){
         CloseLine(lineObj.LineNumber);
         $("#line-ui-"+ lineObj.LineNumber).remove();
+        $("#miniphoneContent").show();
     }
 
     UpdateBuddyList();
@@ -13996,6 +14075,7 @@ function PopupMenu(obj, menu){
 
     // Attach UL to body
     menuObj.appendTo(document.body);
+    // menuObj.appendTo($('#miniphoneContent'));
 
     // Create Menu
     menuObj.menu({});

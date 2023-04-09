@@ -18,7 +18,8 @@ class RtcDialPopupAsset extends \yii\web\AssetBundle
         'css/normalize-v8.0.1.css',
         'css/roboto.css',
         'css/font-awesome.min.css',
-        'css/jquery-ui-1.13.2.min.css',
+//        'css/jquery-ui-1.13.2.min.css',
+        'css/jquery-ui-1.13.0.css',
 //        'css/phone.css',
         'css/miniphone.css',
         'css/phone.dark.css',
@@ -36,8 +37,8 @@ class RtcDialPopupAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $js = [
-        'js/jquery-3.6.1.min.js',
-        'js/jquery-ui-1.13.2.min.js',
+//        'js/jquery-3.6.1.min.js',
+        'js/jquery-ui-1.13.0.js',
         'js/croppie.min.js',
 //        'js/phone.js',
         'js/miniphone.js',
@@ -55,7 +56,7 @@ class RtcDialPopupAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $depends = [
-//        'yii\web\JqueryAsset',
+        'yii\web\JqueryAsset',
     ];
 
 }
