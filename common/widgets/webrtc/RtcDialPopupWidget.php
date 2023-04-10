@@ -63,9 +63,6 @@ class RtcDialPopupWidget extends \yii\base\Widget
         $this->view->registerJs("initSipAccount();");
 
 
-
-
-
         return [
             $asset->baseUrl,
             $assetDir,

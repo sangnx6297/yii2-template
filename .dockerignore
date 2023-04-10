@@ -1,0 +1,4 @@
+./backend/web/assets/*
+./frontend/web/assets/*
+./vendor/*
+./backend/logs/*

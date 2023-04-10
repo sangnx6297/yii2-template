@@ -98,7 +98,7 @@ let VoicemailDid = getDbItem("VoicemailDid", "");                               
 let SubscribeVoicemailExpires = parseInt(getDbItem("SubscribeVoicemailExpires", 300)); // Voceimail Subscription expiry time (in seconds)
 let ContactUserName = getDbItem("ContactUserName", "");                                // Optional name for contact header uri
 let userAgentStr = getDbItem("UserAgentStr", "Browser Phone "+ appversion +" (SIPJS - "+ sipjsversion +") "+ navUserAgent);   // Set this to whatever you want.
-let hostingPrefix = getDbItem("HostingPrefix", "");                                    // Use if hosting off root directory. eg: "/phone/" or "/static/"
+let hostingPrefix = getDbItem("HostingPrefix", bowerDist+"/");                                    // Use if hosting off root directory. eg: "/phone/" or "/static/"
 let RegisterExpires = parseInt(getDbItem("RegisterExpires", 300));                     // Registration expiry time (in seconds)
 let RegisterExtraHeaders = getDbItem("RegisterExtraHeaders", "{}");                    // Parsable Json string of headers to include in register process. eg: '{"foo":"bar"}'
 let RegisterExtraContactParams = getDbItem("RegisterExtraContactParams", "{}");        // Parsable Json string of extra parameters add to the end (after >) of contact header during register. eg: '{"foo":"bar"}'
@@ -1419,6 +1419,8 @@ function SetStatusWindow(){
 // =======
 function InitUi(){
 
+    initSipAccount();
+
     // Custom Web hook
     if(typeof web_hook_on_before_init !== 'undefined') web_hook_on_before_init();
 
@@ -1495,6 +1497,7 @@ function InitUi(){
     if(localDB.getItem("SelectedBuddy") != null){
         console.log("Selecting previously selected buddy...", localDB.getItem("SelectedBuddy"));
         SelectBuddy(localDB.getItem("SelectedBuddy"));
+        debugger;
         UpdateUI();
     }
 
@@ -1840,9 +1843,10 @@ function CreateUserAgent() {
 // ================
 function onTransportConnected(){
     console.log("Connected to Web Socket!");
+    $("#miniphone-msg").html("Connected to Web Socket!");
     $("#regStatus").html(lang.connected_to_web_socket);
 
-    $("#WebRtcFailed").hide();
+    // $("#WebRtcFailed").hide();
 
     // Reset the ReconnectionAttempts
     userAgent.isReRegister = false;
@@ -1867,6 +1871,7 @@ function onTransportConnectError(error){
     // If there is an issue with the WS connection
     // We unregister, so that we register again once its up
     console.log("Unregister...");
+    $("#miniphone-msg").html("Unregister...");
     try{
         userAgent.registerer.unregister();
     } catch(e){
@@ -1874,7 +1879,8 @@ function onTransportConnectError(error){
     }
 
     $("#regStatus").html(lang.web_socket_error);
-    $("#WebRtcFailed").show();
+    // $("#WebRtcFailed").show();
+    $("#miniphone-msg").html("WebSocket Connection Failed:");
 
     ReconnectTransport();
 
@@ -1883,6 +1889,7 @@ function onTransportConnectError(error){
 }
 function onTransportDisconnected(){
     console.log("Disconnected from Web Socket!");
+    $("#miniphone-msg").html("Disconnected from Web Socket!");
     $("#regStatus").html(lang.disconnected_from_web_socket);
 
     userAgent.isReRegister = false;
@@ -8310,7 +8317,7 @@ function ShowDial(){
     $("#actionArea").html(html);
     $("#dialDeleteKey").hide();
     $("#actionArea").show();
-    $("#dialText").focus();
+    // $("#dialText").focus();
 }
 function handleDialInput(obj, event){
     if(EnableAlphanumericDial){

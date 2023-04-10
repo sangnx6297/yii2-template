@@ -12,7 +12,6 @@ function initSipAccount() {
     localDB.setItem("VoiceMailSubscribe", 0);
     localDB.setItem("VoicemailDid", null);
     localDB.setItem("HostingPrefix", bowerDist+"/");
-
 }
 
 

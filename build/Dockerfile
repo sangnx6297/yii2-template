@@ -6,6 +6,7 @@ COPY ./ /app
 
 RUN #apt-get install supervisord
 
+
 RUN chown -R www-data:www-data /app \
     && a2enmod rewrite \
     && a2enmod rewrite headers \
