@@ -7,8 +7,8 @@
     'sipDomain' => Yii::$app->rtc->sipDomain,
 //    'sipUsername' => Yii::$app->session->get(Yii::$app->user->id."_sip_username"),
 //    'sipPassword' => Yii::$app->session->get(Yii::$app->user->id."_sip_secret"),
-    'sipUsername' => Yii::$app->session->get(Yii::$app->user->id."_sip_username"),
-    'sipPassword' => Yii::$app->session->get(Yii::$app->user->id."_sip_secret"),
+    'sipUsername' => Yii::$app->user->identity->extension,
+    'sipPassword' => Yii::$app->user->identity->extension_secret,
 ])?>
 <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
