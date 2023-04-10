@@ -98,7 +98,7 @@ let VoicemailDid = getDbItem("VoicemailDid", "");                               
 let SubscribeVoicemailExpires = parseInt(getDbItem("SubscribeVoicemailExpires", 300)); // Voceimail Subscription expiry time (in seconds)
 let ContactUserName = getDbItem("ContactUserName", "");                                // Optional name for contact header uri
 let userAgentStr = getDbItem("UserAgentStr", "Browser Phone "+ appversion +" (SIPJS - "+ sipjsversion +") "+ navUserAgent);   // Set this to whatever you want.
-let hostingPrefix = getDbItem("HostingPrefix", "/material/");                                    // Use if hosting off root directory. eg: "/phone/" or "/static/"
+let hostingPrefix = getDbItem("HostingPrefix", "");                                    // Use if hosting off root directory. eg: "/phone/" or "/static/"
 let RegisterExpires = parseInt(getDbItem("RegisterExpires", 300));                     // Registration expiry time (in seconds)
 let RegisterExtraHeaders = getDbItem("RegisterExtraHeaders", "{}");                    // Parsable Json string of headers to include in register process. eg: '{"foo":"bar"}'
 let RegisterExtraContactParams = getDbItem("RegisterExtraContactParams", "{}");        // Parsable Json string of extra parameters add to the end (after >) of contact header during register. eg: '{"foo":"bar"}'
@@ -611,7 +611,7 @@ $(document).ready(function () {
             var userLang = GetAlternateLanguage();
             if(userLang != ""){
                 console.log("Loading Alternate Language Pack: ", userLang);
-                $.getJSON(hostingPrefix +"/material/lang/"+ userLang +".json", function (alt_data){
+                $.getJSON(hostingPrefix +"lang/"+ userLang +".json", function (alt_data){
                     lang = alt_data;
                 }).always(function() {
                     console.log("Alternate Language Pack loaded: ", lang);
@@ -1468,19 +1468,20 @@ function InitUi(){
     $(".loading").remove();
 
     // UpdateUI();
+    localDB.setItem("WelcomeScreenAccept", "yes");
 
-    // Show Welcome Screen
-    if(welcomeScreen){
-        if(localDB.getItem("WelcomeScreenAccept") != "yes"){
-            OpenWindow(welcomeScreen, lang.welcome, 480, 600, true, false, lang.accept, function(){
-                localDB.setItem("WelcomeScreenAccept", "yes");
-                CloseWindow();
-                ShowMyProfile();
-            }, null, null, null, null);
-
-            return;
-        }
-    }
+    // // Show Welcome Screen
+    // if(welcomeScreen){
+    //     if(localDB.getItem("WelcomeScreenAccept") != "yes"){
+    //         OpenWindow(welcomeScreen, lang.welcome, 480, 600, true, false, lang.accept, function(){
+    //             localDB.setItem("WelcomeScreenAccept", "yes");
+    //             CloseWindow();
+    //             ShowMyProfile();
+    //         }, null, null, null, null);
+    //
+    //         return;
+    //     }
+    // }
 
     // Check if you account is created
     // if(profileUserID == null ){

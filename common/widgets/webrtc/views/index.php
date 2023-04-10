@@ -5,9 +5,7 @@
 ?>
 
 <!-- Loading Animation -->
-<div class=loading>
-    <span class="fa fa-circle-o-notch fa-spin"></span>
-</div>
+
 
 
 <!-- The Phone -->
@@ -48,6 +46,10 @@
 
         <div class="mini-phone-toolbar__block" style="width: 95%;float: right;">
             <div id="miniphoneContent" style="margin-left: 0px; height: 20%;">
+                <div class=loading>
+                    <span class="fa fa-circle-o-notch fa-spin"></span>
+                </div>
+
                 <table id="miniphone-ui" class="miniStreamSelected" cellspacing="0" cellpadding="0">
                     <tbody>
                     <tr>
