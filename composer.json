@@ -27,7 +27,8 @@
         "mzdani/yii2-adminlte-menu-widget": "@dev",
         "symfony/browser-kit": "^5.4",
         "kriss/yii2-log-reader": "2.*",
-        "yiisoft/yii2-debug": "^2.1"
+        "yiisoft/yii2-debug": "^2.1",
+        "lcssoft/yii2-report": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "~2.2.0",
@@ -51,6 +52,11 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "path",
+            "url": "common/modules/yii2-report",
+            "options": {}
         }
     ]
 }

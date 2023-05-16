@@ -19,6 +19,7 @@ services:
 #      - ./frontend/apache2:/etc/apache2/sites-available:delegated
     networks:
       - lcs-internal-service-network
+    restart: always
 
   backend:
     image: '${SERVICE_REPO}:${SERVICE_VERSION}-local'
@@ -37,7 +38,7 @@ services:
       - ./backend/apache2/conf.d:/etc/apache2/sites-available:delegated
     networks:
       - lcs-internal-service-network
-
+    restart: always
 networks:
   lcs-internal-service-network:
     external: true
