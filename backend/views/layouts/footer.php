@@ -5,8 +5,6 @@
     'serverPath' => Yii::$app->rtc->serverPath,
     'profileName' => Yii::$app->user->identity->username,
     'sipDomain' => Yii::$app->rtc->sipDomain,
-//    'sipUsername' => Yii::$app->session->get(Yii::$app->user->id."_sip_username"),
-//    'sipPassword' => Yii::$app->session->get(Yii::$app->user->id."_sip_secret"),
     'sipUsername' => Yii::$app->user->identity->extension,
     'sipPassword' => Yii::$app->user->identity->extension_secret,
 ])?>
